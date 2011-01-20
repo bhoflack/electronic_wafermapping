@@ -1,0 +1,16 @@
+* Inkless
+** Inkless 19/01
+*** partner 1.3.0
+**** ready for uat
+***** thursday or friday
+*** TODO mirrored server for leister and xfab                     :todo:TODO:
+    SCHEDULED: <2011-01-24 Mon> DEADLINE: <2011-01-26 Wed>
+*** partner 1.2.7
+**** incident with carsem
+*** p&t setup priority list for partner
+**** TODO filter list for things that have already been done           :todo:
+     SCHEDULED: <2011-01-24 Mon> DEADLINE: <2011-01-26 Wed>
+*** update release number on partner-ui
+*** inkless littered with incidents
+*** deployment diagram for inkless and partner
+
