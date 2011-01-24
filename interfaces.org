@@ -1,0 +1,83 @@
+* Electronic wafermapping interfaces
+** Shopfloor interface
+*** Send message when a lot is moved in oracle.
+Send message when a lot is finished sends a new message everytime a lot is moved in the ERP system.
+**** Out
+An xml document containing the following fields:
+- lotname
+- item
+- when
+- operator
+- probing site
+- wafers:
+  - wafer number
+*** Fill in collection plan
+Receives a message and fills in the collection plan for the given lot.
+**** In
+An xml document containing the following fields:
+- lotname
+- wafers:
+  - wafer number
+  - number of good dies
+** Postprocessing Erfurt
+*** process
+Perform postprocessing on a wafermap.
+**** In
+An xml document containing the following fields:
+- lotname
+- item
+- wafer number
+**** Out
+A th01 file containing the postprocessed wafermap.
+** Postprocessing Ieper/Sofia
+*** process
+Perform postprocessing on a lot.
+**** In
+An xml document containing the following fields:
+- lotname
+- item
+- wafers:
+  - wafer number
+**** Out
+A collection of th01 files.
+** TH01 convert
+*** process
+Create a th01 file for a wafer
+**** In
+An xml document containing the following fields:
+- lotname
+- item
+- wafer number
+**** Out
+A th01 file
+** Enterprise Integration Patterns
+*** route to correct postprocessing
+**** In
+An xml document containing the following fields:
+- lotname
+- item
+- probing site
+- wafer number
+**** Out
+An xml document containing the following fields:
+- lotname
+- item
+- wafer number
+*** group postprocessing messages
+**** In
+An xml document containing the following fields:
+- lotname
+- item
+- wafer number
+- number of wafers in lot
+**** Out
+An xml document containing the following fields:
+- lotname
+- item
+- wafers:
+  - wafer number
+*** filter completed rtwm wafermaps
+**** In
+A rtwm map.
+**** Out
+A rtwm map if the map was completed.

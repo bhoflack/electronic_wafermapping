@@ -1,16 +1,66 @@
-* Inkless
-** Inkless 19/01
-*** partner 1.3.0
+* Electronic wafermapping
+** Automatic fill in collection plan
+*** Call with ati
+    SCHEDULED: <2011-01-24 Mon>
+**** Prepare
+     CLOCK: [2011-01-24 Mon 09:34]--[2011-01-24 Mon 11:01] =>  1:27
+***** mail sent at 14/09/2010
+**** Organize regular follow up calls                                   :erp:
+***** Weekly at 1:30pm on monday
+**** Arrange week at Erfurt?
+*** Oracle
+**** TODO Send message when a lot is finished                :shopfloor:intf:
+**** TODO Fill in collection plan                            :shopfloor:intf:
+*** Rtwm DB
+**** TODO Send message when a wafermap is finished
+*** EG DB
+**** TODO Send message when a wafermap is finished
+*** Wafermapping
+**** Erfurt
+***** TODO Postprocessing
+***** TODO TH01 convert
+**** Sofia
+***** TODO Postprocessing
+***** TODO TH01 convert
+**** Ieper
+***** TODO Postprocessing
+***** TODO TH01 convert
+**** TODO Extract good number of dies
+**** TODO Send good number of dies
+**** TODO Start postprocessing
+**** TODO Routing
+**** TODO Exception handling
+*** Questions
+**** Will this system handle INK_TH01 in Erfurt
+**** Add jem to the flow
+**** Can postprocessing in Ieper also be executed on wafer base?
+**** How will th01 convert know which file to convert?
+*** Next actions
+**** TODO Define interfaces for systems                                 :brh:
+     :CLOCK:
+     CLOCK: [2011-01-24 Mon 13:58]
+     CLOCK: [2011-01-24 Mon 11:04]--[2011-01-24 Mon 11:28] =>  0:24
+     :END:
+
+interfaces.org
+**** TODO Interfaces from postprocessing                                :ati:
+** Inkless
+*** Inkless 19/01
+**** partner 1.3.0
 **** ready for uat
 ***** thursday or friday
-*** TODO mirrored server for leister and xfab                     :todo:TODO:
-    SCHEDULED: <2011-01-24 Mon> DEADLINE: <2011-01-26 Wed>
-*** partner 1.2.7
-**** incident with carsem
-*** p&t setup priority list for partner
-**** TODO filter list for things that have already been done           :todo:
+**** TODO mirrored server for leister and xfab                    :todo:TODO:
      SCHEDULED: <2011-01-24 Mon> DEADLINE: <2011-01-26 Wed>
-*** update release number on partner-ui
-*** inkless littered with incidents
-*** deployment diagram for inkless and partner
+**** partner 1.2.7
+***** incident with carsem
+**** p&t setup priority list for partner
+***** TODO filter list for things that have already been done          :todo:
+      SCHEDULED: <2011-01-24 Mon> DEADLINE: <2011-01-26 Wed>
+**** update release number on partner-ui
+**** inkless littered with incidents
+**** deployment diagram for inkless and partner
+*** Auto fill in collection plans
+*** Sent mail to ati                                         :mail:follow:up:
+*** Create planning for project                                         :ati:
+    DEADLINE: <2011-01-25 Tue>
 
