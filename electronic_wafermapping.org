@@ -8,28 +8,33 @@
 **** Organize regular follow up calls                                   :erp:
 ***** Weekly at 1:30pm on monday
 **** Arrange week at Erfurt?
-*** Oracle
-**** TODO Send message when a lot is finished                :shopfloor:intf:
-**** TODO Fill in collection plan                            :shopfloor:intf:
-*** Rtwm DB
-**** TODO Send message when a wafermap is finished
-*** EG DB
-**** TODO Send message when a wafermap is finished
-*** Wafermapping
-**** Erfurt
-***** TODO Postprocessing
-***** TODO TH01 convert
-**** Sofia
-***** TODO Postprocessing
-***** TODO TH01 convert
-**** Ieper
-***** TODO Postprocessing
-***** TODO TH01 convert
-**** TODO Extract good number of dies
-**** TODO Send good number of dies
-**** TODO Start postprocessing
-**** TODO Routing
-**** TODO Exception handling
+*** Tasks
+**** Oracle
+     SCHEDULED: <2011-02-07 Mon>
+***** TODO Send message when a lot is finished               :shopfloor:intf:
+***** TODO Fill in collection plan                           :shopfloor:intf:
+**** Rtwm DB
+***** TODO Send message when a wafermap is finished
+      SCHEDULED: <2011-02-21 Mon>
+**** Wafermapping
+***** Erfurt
+****** TODO Postprocessing
+****** TODO TH01 convert
+***** Sofia
+****** TODO Postprocessing
+****** TODO TH01 convert
+***** Ieper
+****** TODO Postprocessing
+****** TODO TH01 convert
+***** TODO Extract good number of dies
+      SCHEDULED: <2011-02-14 Mon>
+***** TODO Send good number of dies
+      SCHEDULED: <2011-02-14 Mon>
+***** TODO Start postprocessing
+      SCHEDULED: <2011-02-14 Mon>
+***** TODO Routing
+      SCHEDULED: <2011-02-28 Mon>
+***** TODO Exception handling
 *** Questions
 **** Will this system handle INK_TH01 in Erfurt
 **** Add jem to the flow
@@ -68,6 +73,7 @@ interfaces.org
 **** TODO Create planning with dates for collection plan import
      SCHEDULED: <2011-01-31 Mon>
      :CLOCK:
+     CLOCK: [2011-01-31 Mon 09:16]
      CLOCK: [2011-01-27 Thu 10:12]--[2011-01-27 Thu 10:13] =>  0:01
      CLOCK: [2011-01-27 Thu 10:12]--[2011-01-27 Thu 10:12] =>  0:00
      :END:
@@ -78,7 +84,7 @@ interfaces.org
      DEADLINE: <2011-02-03 Thu>
      CLOCK: [2011-01-27 Thu 14:01]--[2011-01-27 Thu 14:36] =>  0:35
 ***** Added partner to the list of fields to check.
-***** -[ ] TODO Verify in -test
+***** TODO Verify in -test
 ** Inkless
 *** Meetings
 **** Inkless 19/01
