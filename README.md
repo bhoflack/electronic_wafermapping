@@ -1,7 +1,10 @@
-Electronic Wafermapping
------------------------
+# Electronic Wafermapping
 
-The electronic wafermapping is the wafermapping integration code for Melexis.  To build it execute:
+## About
+The electronic wafermapping is the wafermapping integration code for Melexis.
+
+## Building
+To build it execute:
 
   mvn install
   cd electronic_wafermapping
