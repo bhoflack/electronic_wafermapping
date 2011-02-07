@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>ewaf</artifactId>
+    <groupId>com.melexis</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.melexis</groupId>
+  <artifactId>shopfloor-interface</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jbi-service-unit</packaging>
+  <name>Electronic Wafermapping :: Shopfloor interface</name>
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>jbi-maven-plugin</artifactId>
+        <version>4.3.0-fuse-00-00</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <releases />
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>fusesource.releases</id>
+      <name>FuseSource Release Repository</name>
+      <url>http://repo.fusesource.com/maven2</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots />
+      <id>fusesource.snapshots</id>
+      <name>FuseSource Snapshot Repository</name>
+      <url>http://repo.fusesource.com/maven2-snapshots</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <releases />
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>fusesource.releases</id>
+      <name>FuseSource Release Repository</name>
+      <url>http://repo.fusesource.com/maven2</url>
+    </pluginRepository>
+    <pluginRepository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots />
+      <id>fusesource.snapshots</id>
+      <name>FuseSource Snapshot Repository</name>
+      <url>http://repo.fusesource.com/maven2-snapshots</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.servicemix</groupId>
+      <artifactId>servicemix-file</artifactId>
+      <version>2010.02.0-fuse-02-00</version>
+    </dependency>
+  </dependencies>
+</project>
