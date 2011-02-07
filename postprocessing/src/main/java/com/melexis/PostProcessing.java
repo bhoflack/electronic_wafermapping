@@ -8,15 +8,12 @@ import javax.jbi.messaging.ExchangeStatus;
 import javax.jbi.messaging.MessageExchange;
 import javax.jbi.messaging.MessagingException;
 
-public class MyBean implements MessageExchangeListener {
+public class PostProcessing implements MessageExchangeListener {
 
-    @Resource
-    private DeliveryChannel channel;
+    @Resource private DeliveryChannel channel;
 
-    public void onMessageExchange(MessageExchange exchange) throws MessagingException {
-        System.out.println("Received exchange: " + exchange);
+    public void onMessageExchange(final MessageExchange exchange) throws MessagingException {
+        System.out.println("Received postprocessing job for lot: " + exchange);
         exchange.setStatus(ExchangeStatus.DONE);
-        channel.send(exchange);
     }
-
 }
