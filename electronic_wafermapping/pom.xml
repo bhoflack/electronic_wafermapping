@@ -58,5 +58,20 @@
       <artifactId>collection-plan-import-route</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+        <dependency>
+      <groupId>com.melexis</groupId>
+      <artifactId>rtwm-interface</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.melexis</groupId>
+      <artifactId>th01convertRoute</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.melexis</groupId>
+      <artifactId>th01</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 </project>
