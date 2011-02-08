@@ -8,11 +8,12 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <groupId>com.melexis</groupId>
-  <artifactId>electronic_wafermapping</artifactId>
+  <artifactId>collection-plan-import-route</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>jbi-service-assembly</packaging>
-  <name>Electronic Wafermapping :: Service Assembly</name>
+  <packaging>jbi-service-unit</packaging>
+  <name>Electronic Wafermapping :: Collection plan import routing</name>
   <build>
+    <defaultGoal>install</defaultGoal>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -35,28 +36,19 @@
         <artifactId>jbi-maven-plugin</artifactId>
         <version>4.3.1-fuse-00-00</version>
         <extensions>true</extensions>
-        <configuration>
-          <type>service-assembly</type>
-        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-maven-plugin</artifactId>
+        <version>2.6.0-fuse-00-00</version>
       </plugin>
     </plugins>
   </build>
-
   <dependencies>
     <dependency>
-      <groupId>com.melexis</groupId>
-      <artifactId>shopfloor-interface</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.melexis</groupId>
-      <artifactId>postprocessing</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.melexis</groupId>
-      <artifactId>collection-plan-import-route</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <groupId>org.apache.servicemix</groupId>
+      <artifactId>servicemix-camel</artifactId>
+      <version>2011.01.0-fuse-00-00</version>
     </dependency>
   </dependencies>
 </project>

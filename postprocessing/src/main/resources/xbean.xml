@@ -23,7 +23,7 @@
   <!--
     Simple endpoint which exposed myBean into the NMR.
   -->
-  <bean:endpoint service="ew:postprocessing" endpoint="postprocessing" bean="#postProcessing"/>
+  <bean:endpoint service="ew:postprocesslot" endpoint="postprocessing" bean="#postProcessing"/>
 
   <bean id="postProcessing" class="com.melexis.PostProcessing" />
 

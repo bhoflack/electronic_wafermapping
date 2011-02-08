@@ -9,7 +9,7 @@
 
   <file:poller service="ew:postprocessing_listener"
                endpoint="postprocessing_listener"
-               targetService="ew:postprocessing"
+               targetService="ew:lot_moved_to_postprocessing"
                file="/tmp/postprocessing">
   </file:poller>
 
