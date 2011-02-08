@@ -19,6 +19,7 @@
     <module>th01</module>
     <module>collection-plan-import-route</module>
     <module>electronic_wafermapping</module>
+    <module>th01convertRoute</module>
   </modules>
 
   <pluginRepositories>
