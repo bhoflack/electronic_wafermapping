@@ -6,8 +6,10 @@ import org.apache.camel.builder.RouteBuilder;
 
 public class Route extends RouteBuilder {
 
+    private final static String NS = "jbi:endpoint:http://melexis.com/electronicwafermapping/";
+
     public void configure() {
-        from("jbi:endpoint:http://melexis.com/electronicwafermapping/lot_moved_to_postprocessing/route")
-            .to("jbi:endpoint:http://melexis.com/electronicwafermapping/postprocesslot/postprocessing");
+        from(NS + "lot_moved_to_postprocessing/route")
+            .to(NS + "postprocesslot/postprocessing");
     }
 }
