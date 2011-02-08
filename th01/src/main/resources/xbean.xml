@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:bean="http://servicemix.apache.org/bean/1.0"
+       xmlns:ew="http://melexis.com/electronicwafermapping"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://servicemix.apache.org/bean/1.0 http://servicemix.apache.org/schema/servicemix-bean-2010.01.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean:endpoint service="ew:th01" endpoint="convert" bean="#th01Convert"/>
+
+  <bean id="th01Convert" class="com.melexis.TH01Bean"/>
+</beans>

@@ -14,7 +14,9 @@
 
   <modules>
     <module>shopfloor-interface</module>
+    <module>rtwm-interface</module>
     <module>postprocessing</module>
+    <module>th01</module>
     <module>collection-plan-import-route</module>
     <module>electronic_wafermapping</module>
   </modules>
