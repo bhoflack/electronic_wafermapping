@@ -18,8 +18,11 @@
     <module>postprocessing</module>
     <module>th01</module>
     <module>collection-plan-import-route</module>
-    <module>electronic_wafermapping</module>
+    <module>numberOfDies</module>
     <module>th01convertRoute</module>
+
+    <!-- electronic wafermapping should always be the last -->
+    <module>electronic_wafermapping</module>
   </modules>
 
   <pluginRepositories>
