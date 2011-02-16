@@ -1,38 +1,181 @@
 * Electronic wafermapping interfaces
-** Shopfloor interface
-*** Send message when a lot is moved in oracle.
-Send message when a lot is finished sends a new message everytime a lot is moved in the ERP system.
-**** Out
+** Models
+*** Lot
 An xml document containing the following fields:
 - lotname
 - item
-- when
-- operator
-- probing site
+- organization
+- probelocation (?)
+- subcontractor
+- wafer:
+  - wafer number
+  - good die count
+  - wafermap filename
+
+There are binary th01 wafermaps attached to the wafermap with the filename described in the xml document,  and as contents the selected wafermaps.
+
+*** Wafermap
+An xml document containing the following fields:
+- lotname
+- wafer number
+- wafers in lot
+- item
+- organization
+- subcontractor
+- wafermap filename
+
+A binary th01 wafermap is attached with the filename as described in wafermap filename.
+** Inkless
+The inkless service is triggered with the lot info,  and after a while returns a collection of wafermaps or an error.
+*** In
+An xml document containing the following fields:
+- lotname
+- item
+- organization
+- probelocation (?)
+- subcontractor
 - wafers:
   - wafer number
-*** Fill in collection plan
+  - good die count
+*** Out
+An xml document containing the following fields:
+- lotname
+- item
+- organization
+- probelocation (?)
+- subcontractor
+- wafer:
+  - wafer number
+  - good die count
+  - wafermap filename
+
+There are binary th01 wafermaps attached to the wafermap with the filename described in the xml document,  and as contents the selected wafermaps.
+*** Error
+On error an exception is triggered describing the error.
+
+** Components
+*** Filters
+**** number of good dies
+Select the wafermaps where the number of good dies is equal to the number of good dies from the ERP system.
+***** In
+A lot model.
+***** Out
+A lot model.
+**** postprocessing
+Select the wafermaps that contain the INK_TH01 marker.
+***** In
+A lot model.
+***** Out
+A lot model.
+**** row columns check
+Filter the wafermaps that have the number of rows and columns as defined in the item config.
+***** In
+A lot model.
+
+Property
+numberOfRows int
+numberOfCols int
+***** Out
+A lot model.
+**** has valid wafermaps
+Filter lots that have a valid wafermap for all wafers
+***** In
+A lot model.
+***** Out
+A lot model.
+
+*** Transformers
+**** Pactech
+Transform a collection of TH01 wafermaps to a collection of Pactech wafermaps
+***** In
+A lot model.
+***** Out
+A lot model,  with attached pactech wafermaps.
+**** Conti
+Transform a collection of TH01 wafermaps to a collection of Conti wafermaps
+***** In
+A lot model.
+***** Out
+A lot model,  with attached conti wafermaps.
+**** Pactech incoming
+***** In
+A pactech wafermap.
+***** Out
+A TH01 wafermap.
+*** Enrichers
+**** Config
+Attach the configuration for a lotname,  device,  item,  site and subcontractor to a lot model.
+***** In
+A lot model
+***** Out
+A lot model,  with the configuration attached as properties.
+**** Lot information for incoming wafermap
+Attach the lotinformation for the incoming wafermap.
+***** In
+A TH01 wafermap
+***** Out
+A wafermap model.
+*** Routing
+**** Workflow
+The workflow engines routes the business flow for the pactech project.
+**** Camel
+The camel component integrates the different service units.
+*** Interfaces
+
+**** Shopfloor interface
+***** Send message when a lot is moved in oracle.
+Send message when a lot is finished sends a new message everytime a lot is moved in the ERP system.
+****** Out
+A lot model.
+***** Send message when a lot has been shipped in oracle            :inkless:
+Send a message when a lot has been shipped in the ERP system
+****** Out
+A lot model.
+***** Fill in collection plan
 Receives a message and fills in the collection plan for the given lot.
-**** In
+****** In
 An xml document containing the following fields:
 - lotname
 - wafers:
   - wafer number
   - number of good dies
-** Postprocessing Erfurt
-*** process
+***** Wafermap information for a given wafer
+Find the wafermap information for a given wafer.
+****** In
+An xml document containing
+- lotname
+- waferid
+****** Out
+A wafer model.
+**** WMDB interface
+The interface with the wafermap db.
+***** Wafermaps for the given lot
+Find the wafermaps for the given lot.
+****** In
+A lot model.
+****** Out
+A lot model containing the TH01 wafermaps.
+***** Template wafermap
+Find a template wafermap in the wafermap db.
+****** In
+An xml document containing the template name.
+****** Out
+A th01 wafermap.
+** Other
+*** Postprocessing Erfurt
+**** process
 Perform postprocessing on a wafermap.
-**** In
+***** In
 An xml document containing the following fields:
 - lotname
 - item
 - wafer number
 **** Out
 A th01 file containing the postprocessed wafermap.
-** Postprocessing Ieper/Sofia
-*** process
+*** Postprocessing Ieper/Sofia
+**** process
 Perform postprocessing on a lot.
-**** In
+***** In
 An xml document containing the following fields:
 - lotname
 - item
@@ -40,18 +183,18 @@ An xml document containing the following fields:
   - wafer number
 **** Out
 A collection of th01 files.
-** TH01 convert
-*** process
+*** TH01 convert
+**** process
 Create a th01 file for a wafer
-**** In
+***** In
 An xml document containing the following fields:
 - lotname
 - item
 - wafer number
 **** Out
 A th01 file
-** Enterprise Integration Patterns
-*** route to correct postprocessing
+*** Enterprise Integration Patterns
+**** route to correct postprocessing
 **** In
 An xml document containing the following fields:
 - lotname
@@ -63,7 +206,7 @@ An xml document containing the following fields:
 - lotname
 - item
 - wafer number
-*** group postprocessing messages
+**** group postprocessing messages
 **** In
 An xml document containing the following fields:
 - lotname
@@ -76,7 +219,7 @@ An xml document containing the following fields:
 - item
 - wafers:
   - wafer number
-*** filter completed rtwm wafermaps
+**** filter completed rtwm wafermaps
 **** In
 A rtwm map.
 **** Out

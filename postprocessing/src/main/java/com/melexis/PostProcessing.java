@@ -23,9 +23,7 @@ public class PostProcessing implements MessageExchangeListener {
     public void onMessageExchange(final MessageExchange exchange) throws MessagingException {
         try {
             if (exchange.getStatus() == ExchangeStatus.ACTIVE) {
-                if (log.isDebugEnabled()) {
-                    log.debug("Received postprocessing job for lot: " + exchange);
-                }
+                log.info("Received job to start postprocessing.");
 
                 final InOut inOut = (InOut) exchange;
                 final NormalizedMessage msg = inOut.getInMessage();
@@ -50,7 +48,7 @@ public class PostProcessing implements MessageExchangeListener {
                 MessageUtil.transferInToOut(inOut, inOut);
                 channel.send(inOut);
             } else {
-                log.warn("Received exchange,  but status is not ACTIVE." + exchange);
+                log.debug("Received exchange,  but status is not ACTIVE." + exchange);
             }
         } catch (IOException e) {
             throw new MessagingException("Exception when handling message", e);
