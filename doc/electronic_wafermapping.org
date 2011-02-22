@@ -28,6 +28,8 @@
 ****** TODO TH01 convert
 ***** TODO Extract good number of dies
       SCHEDULED: <2011-02-14 Mon>
+      CLOCK: [2011-02-21 Mon 09:24]--[2011-02-21 Mon 11:42] =>  2:18
+
 ***** TODO Send good number of dies
       SCHEDULED: <2011-02-14 Mon>
 ***** TODO Start postprocessing
@@ -40,6 +42,9 @@
 **** Add jem to the flow
 **** Can postprocessing in Ieper also be executed on wafer base?
 **** How will th01 convert know which file to convert?
+***** TODO Get the wafermaps for a lot
+      CLOCK: [2011-02-21 Mon 11:43]
+
 *** Next actions
 **** DONE Define interfaces for systems                                 :brh:
      :CLOCK:
@@ -80,7 +85,7 @@ interfaces.org
      :PROPERTIES:
      :ORDERED:  t
      :END:
-**** TODO INKLESS-570 After change of subcontractor of an item,  the shopfloor interface does not pick up the new settings
+**** DONE INKLESS-570 After change of subcontractor of an item,  the shopfloor interface does not pick up the new settings
      DEADLINE: <2011-02-03 Thu>
      CLOCK: [2011-01-27 Thu 14:01]--[2011-01-27 Thu 14:36] =>  0:35
 ***** Added partner to the list of fields to check.
@@ -120,7 +125,7 @@ Created ticket
 **** Inkless 27/01
 ***** TODO Rotate wafermaps after downloading them in Inkless. :rotate:issue:PRTNR:4:
 ***** TODO Add possibility configure a wafermap to be rotated. :rotate:issue:PRTNR:4:
-***** TODO Ask Peter to know more about Pactech and Continental
+***** DONE Ask Peter to know more about Pactech and Continental
 
 *** Auto fill in collection plans
 *** Sent mail to ati                                         :mail:follow:up:
@@ -130,6 +135,77 @@ Created ticket
 ** Partner
 *** DONE Create package for partner 1.3.0
     SCHEDULED: <2011-01-25 Tue>
+** Continental
+*** Requirements
+**** Send wafermaps to pactech
+***** amkor format
+***** after probing                                                :question:
+****** confirmed by ggo on 15/03/2011
+**** Import wafermaps from pactech
+***** amkor format
+***** postprocessing                                               :question:
+****** yes,  ggo on 15/03/2011
+***** import data in oracle                                        :question:
+****** not top priority,  ggo on 15/03/2011
+**** Send shipping request to pactech
+***** TODO ask jut for format and transport
+      SCHEDULED: <2011-02-16 Wed>
+***** which format                                                 :question:
+***** which transport                                              :question:
+**** Send wafermaps to continental
+***** triggered when postprocessing is finished
+***** conti format
+***** only when wafermaps from pactech are sent
+***** Send confirmation to pactech to send                           :format:
+***** assume that pactech sends wafermaps to continental
+***** wait for confirmation by continental that the wafermaps are received
+**** Postprocessing
+***** Start postprocessing
+***** Import results in Oracle                                     :question:
+***** Move in Oracle                                               :question:
+**** Services
+***** Inkless service with input event,  output a collection of valid wafermaps
+*** .plan
+**** interfaces document
+     CLOCK: [2011-02-16 Wed 09:53]--[2011-02-16 Wed 12:52] =>  2:59
+1d
+**** setup service bus
+Created ticket to create ewaf
+0.5d
+**** post errors on topic
+0.5d
+**** shopfloor interface
+***** lot shipped
+1d
+**** wmapdb interface
+***** wafermaps for lot
+1d
+**** config
+2d
+***** device config
+***** item config
+***** lot config
+***** site config
+**** validations
+***** pass dies
+1d
+***** postprocessing
+0.5d
+***** row / columns
+0.5d
+**** camel routings
+1d
+**** workflow
+2d
+**** pactech convertor
+0.5d
+**** conti convertor
+0.5d
+**** ship wafermaps message
+1d
+----
+~ 13d
+
 
 
 
