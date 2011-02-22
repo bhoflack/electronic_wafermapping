@@ -43,11 +43,6 @@ public class MessageUtil {
         }
     }
 
-    private byte[] attachmentToBuffer(NormalizedMessage msg, String filename) throws IOException {
-        final DataHandler handler = msg.getAttachment(filename);        
-        return toByteArray(handler.getDataSource().getInputStream());
-    }
-
     public void toMessage(final NormalizedMessage m, final Lot l) throws MessagingException {
         final String xml = xmlUtil.toXml(l);
         m.setContent(new StringSource(xml));
@@ -58,6 +53,16 @@ public class MessageUtil {
                 m.addAttachment(filename, new DataHandler(new ByteArrayDataSource(wafermaps.get(filename), "bin/th01")));
             }
         }
-        
+    }
+
+    public void withMessage(final NormalizedMessage m, final LotTransformer transformer) throws MessagingException {
+        final Lot l = fromMessage(m);
+        final Lot processed = transformer.process(l);
+        toMessage(m, processed);
+    }
+
+    private byte[] attachmentToBuffer(NormalizedMessage msg, String filename) throws IOException {
+        final DataHandler handler = msg.getAttachment(filename);        
+        return toByteArray(handler.getDataSource().getInputStream());
     }
 }

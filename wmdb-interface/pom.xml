@@ -54,7 +54,7 @@
 
       <dependency>
           <groupId>com.melexis</groupId>
-          <artifactId>xmlutil</artifactId>
+          <artifactId>messagetool</artifactId>
           <version>1.0.0-SNAPSHOT</version>
       </dependency>
   </dependencies>

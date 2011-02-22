@@ -1,12 +1,11 @@
 package com.melexis;
 
-import com.melexis.util.XmlUtil;
+import com.melexis.util.MessageUtil;
 import com.melexis.wafermaps.WaferService;
-import org.apache.servicemix.jbi.jaxp.StringSource;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.activation.DataHandler;
+import javax.jbi.messaging.DeliveryChannel;
 import javax.jbi.messaging.ExchangeStatus;
 import javax.jbi.messaging.InOut;
 import javax.jbi.messaging.NormalizedMessage;
@@ -20,49 +19,43 @@ public class WMDBBeanTest {
 
     private WMDBBean wmdb;
     private WaferService waferService;
-    private XmlUtil xmlUtil;
+    private MessageUtil messageUtil;
+    private DeliveryChannel channel;
 
     @Before public void setUp() {
         waferService = mock(WaferService.class);
-        xmlUtil = new XmlUtil();
+        messageUtil = mock(MessageUtil.class);
+        channel = mock(DeliveryChannel.class);
 
-        wmdb = new WMDBBean(waferService, xmlUtil);
+        wmdb = new WMDBBean(waferService, messageUtil);
+
+        wmdb.setChannel(channel);
     }
 
    @Test public void findWafermapsForLot() throws Exception {
        final String lotname = "A12345";
 
+       // expectations
        final InOut inOut = mock(InOut.class);
        final NormalizedMessage msg = mock(NormalizedMessage.class);
-       final StringSource contents = new StringSource(createLotModel());
 
-
-       // expectations
+       final Lot lot = createLotModel();
        when(inOut.getStatus()).thenReturn(ExchangeStatus.ACTIVE);
        when(inOut.getInMessage()).thenReturn(msg);
-       when(msg.getContent()).thenReturn(contents);
-
+       
        //  get the wafermaps
-       for (int i=1; i<=4; i++) {
-           when(waferService.findWafermapsByLotnameAndWaferid(lotname, i))
-               .thenReturn(foundWafers(lotname, i));
+       for (final Wafer wafer : lot.getWafers()) {
+           wafer.setWafermaps(foundWafers(lotname, wafer.getWafernumber()));           
        }
 
         //  for transfering in to out.
         when(inOut.getMessage("in")).thenReturn(msg);
         when(inOut.createMessage()).thenReturn(msg);
 
-       
-
        // perform the processor
        wmdb.onMessageExchange(inOut);
 
-       // verify the wafermaps are attached to the message
-       for (int i=1; i<=4; i++) {
-           verify(msg).addAttachment(eq(format("%s-%d.th01", lotname, i)), isA(DataHandler.class));
-           verify(msg).addAttachment(eq(format("%s-%d-2.th01", lotname, i)), isA(DataHandler.class));
-       }
-
+       verify(channel).send(inOut);
     }
 
     private static Map<String, byte[]> foundWafers(final String lotname, final int wafer) {
@@ -73,12 +66,19 @@ public class WMDBBeanTest {
         return wafers;
     }
 
-    private static String createLotModel() {
-        return "<lot name=\"A12345\" item=\"201210600\" organization=\"MLX_IEP_OPS_IO\" probelocation=\"MLX_IEP_OPS_IO\" subcontractor=\"O_AMKOR_1\">\n" +
-            "  <wafer number=\"1\"/>\n" +
-            "  <wafer number=\"2\"/>\n" +
-            "  <wafer number=\"3\"/>\n" +
-            "  <wafer number=\"4\"/>\n" +
-            "</lot>";
+    private static Lot createLotModel() {
+        final Lot l = new Lot();
+        l.setName("A12345");
+        l.setItem("201210600");
+        l.setOrganization("MLX_IEP_OPS_IO");
+        l.setProbelocation("MLX_IEP_OPS_IO");
+        l.setSubcontractor("O_AMKOR_1");
+
+        for (int i=1; i<=4; i++) {
+            final Wafer w = new Wafer(i);
+            l.getWafers().add(w);
+        }
+
+        return l;
     }
 }
