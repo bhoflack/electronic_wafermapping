@@ -16,6 +16,7 @@
     <module>model</module>
     <module>xmlutil</module>
     <module>message-tool</module>
+    <module>config</module>
     <module>shopfloor-interface</module>
     <module>rtwm-interface</module>
     <module>postprocessing</module>

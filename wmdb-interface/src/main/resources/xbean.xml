@@ -20,7 +20,7 @@
         <constructor-arg ref="xmlutil"/>
     </bean>
 
-    <bean id="wmdb" class="com.melexis.WMDBBean">
+    <bean id="wmdb" class="com.melexis.util.ProcessLotExchangeListener">
         <constructor-arg ref="attachWafermapTransformer"/>
         <constructor-arg ref="messageUtil"/>
     </bean>

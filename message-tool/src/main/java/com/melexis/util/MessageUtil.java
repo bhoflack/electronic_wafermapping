@@ -55,7 +55,7 @@ public class MessageUtil {
         }
     }
 
-    public void withMessage(final NormalizedMessage m, final LotTransformer transformer) throws MessagingException {
+    public void withMessage(final NormalizedMessage m, final LotTransformer transformer) throws Exception {
         final Lot l = fromMessage(m);
         final Lot processed = transformer.process(l);
         toMessage(m, processed);

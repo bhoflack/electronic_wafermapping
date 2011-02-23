@@ -1,9 +1,13 @@
 package com.melexis;
 
 import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
-public class Lot {
+import static org.apache.commons.lang.Validate.*;
+
+public class Lot implements Configurable {
 
     private String name;
     private String item;
@@ -11,6 +15,44 @@ public class Lot {
     private String probelocation;
     private String subcontractor;
     private Set<Wafer> wafers = new HashSet<Wafer>();
+    private Map<String, String> config = new HashMap<String, String>();
+
+    public Lot() {}
+
+    public Lot(final String name,
+               final String item,
+               final String organization,
+               final String probelocation,
+               final String subcontractor) {
+        this();
+        this.name = name;
+        this.item = item;
+        this.organization = organization;
+        this.probelocation = probelocation;
+        this.subcontractor = subcontractor;
+    }
+
+    /**
+     * The order in which the order for the configuration.
+     * The last fields have the most detail.
+     */
+    public String[] getFieldOrder() {
+        return new String[] {
+            "subcontractor",
+            "probelocation",
+            "organization",
+            "device",
+            "item",
+            "name"
+        };
+    }
+
+    public String getDevice() {
+        notNull(item, "The item can't be null!");
+        isTrue(item.length() >= 9, "The item can't have less then 9 numbers.");
+
+        return item.substring(2, 7);
+    }
 
     public String getName() {
         return name;
@@ -60,6 +102,14 @@ public class Lot {
         this.wafers = wafers;
     }
 
+    public void setConfig(final Map<String, String> config) {
+        this.config = config;
+    }
+
+    public Map<String, String> getConfig() {
+        return config;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -70,6 +120,7 @@ public class Lot {
         sb.append(", probelocation='").append(probelocation).append('\'');
         sb.append(", subcontractor='").append(subcontractor).append('\'');
         sb.append(", wafers=").append(wafers);
+        sb.append(", config=").append(config);
         sb.append('}');
         return sb.toString();
     }
@@ -103,6 +154,9 @@ public class Lot {
         if (wafers != null ? !wafers.equals(lot.wafers) : lot.wafers != null) {
             return false;
         }
+        if (config != null ? !config.equals(lot.config) : lot.config != null) {
+            return false;
+        }
 
         return true;
     }
@@ -115,6 +169,7 @@ public class Lot {
         result = 31 * result + (probelocation != null ? probelocation.hashCode() : 0);
         result = 31 * result + (subcontractor != null ? subcontractor.hashCode() : 0);
         result = 31 * result + (wafers != null ? wafers.hashCode() : 0);
+        result = 31 * result + (config != null ? config.hashCode() : 0);
         return result;
     }
 }
