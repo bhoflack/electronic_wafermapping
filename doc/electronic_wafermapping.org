@@ -179,6 +179,8 @@ Created ticket to create ewaf
 1d
 **** wmapdb interface
 ***** wafermaps for lot
+      CLOCK: [2011-02-23 Wed 10:45]
+
 1d
 **** config
 2d
