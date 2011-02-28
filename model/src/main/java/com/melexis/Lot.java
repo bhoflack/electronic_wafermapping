@@ -54,6 +54,20 @@ public class Lot implements Configurable {
         return item.substring(2, 7);
     }
 
+    public void addWafer(final Wafer w) {
+        wafers.add(w);
+    }
+
+    public Wafer findWaferWithNumber(final int i) {
+        for (final Wafer w : wafers) {
+            if (w.getWafernumber() == i) {
+                return w;
+            }
+        }
+
+        throw new IllegalArgumentException("Invalid wafer number");
+    }
+
     public String getName() {
         return name;
     }
