@@ -51,4 +51,5 @@ public class LotTest {
     @Test(expected=IllegalArgumentException.class) public void noWaferWithNumber() {
         lot.findWaferWithNumber(100);
     }
+
 }

@@ -1,1 +1,7 @@
 *target
+*.iml
+*.ids
+*.ipr
+*.iws
+*.patch
+

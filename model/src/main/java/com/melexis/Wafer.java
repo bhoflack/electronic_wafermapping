@@ -1,16 +1,22 @@
 package com.melexis;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Wafer {
 
     private Integer wafernumber;
     private Integer passdies;
     private Map<String, byte[]> wafermaps = new HashMap<String, byte[]>();
+    private Set<String> validationmessages = new HashSet<String>();
 
     public Wafer() {
+    }
 
+    public void addValidationmessage(final String message) {
+        validationmessages.add(message);
     }
 
     public Wafer(final Integer wafernumber) {
@@ -40,6 +46,14 @@ public class Wafer {
 
     public void setWafermaps(Map<String, byte[]> wafermaps) {
         this.wafermaps = wafermaps;
+    }
+
+    public void setValidationmessages(final Set<String> validationmessages) {
+        this.validationmessages = validationmessages;
+    }
+
+    public Set<String> getValidationmessages() {
+        return validationmessages;
     }
 
     @Override
@@ -72,6 +86,9 @@ public class Wafer {
         if (wafernumber != null ? !wafernumber.equals(wafer.wafernumber) : wafer.wafernumber != null) {
             return false;
         }
+        if (validationmessages != null ? !validationmessages.equals(wafer.validationmessages) : wafer.validationmessages != null) {
+            return false;
+        }
 
         return true;
     }
@@ -80,6 +97,7 @@ public class Wafer {
         int result = wafernumber != null ? wafernumber.hashCode() : 0;
         result = 31 * result + (passdies != null ? passdies.hashCode() : 0);
         result = 31 * result + (wafermaps != null ? wafermaps.hashCode() : 0);
+        result = 31 * result + (validationmessages != null ? validationmessages.hashCode() : 0);
         return result;
     }
 }
