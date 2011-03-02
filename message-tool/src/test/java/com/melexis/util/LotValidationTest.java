@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.util.Collections;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static org.apache.commons.io.IOUtils.toByteArray;
+import static com.melexis.util.IOUtils.resource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -58,9 +58,5 @@ public class LotValidationTest {
         // verify the validation messages are added.
         assertEquals(Collections.emptySet(), pw1.getValidationmessages());
         assertEquals(ImmutableSet.of("Error blaat first", "Error blaat other"), pw2.getValidationmessages());
-    }
-
-    private final static byte[] resource(final String filename) throws Exception {
-        return toByteArray(LotValidationTest.class.getClassLoader().getResourceAsStream(filename));
     }
 }

@@ -5,7 +5,7 @@ import com.melexis.th01.TH01WaferMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.apache.commons.io.IOUtils.toByteArray;
+import static com.melexis.util.IOUtils.resource;
 import static org.junit.Assert.*;
 
 public class PostprocessingPredicateTest {
@@ -33,9 +33,5 @@ public class PostprocessingPredicateTest {
         final TH01WaferMap without = new TH01WaferMap(resource("no_postprocessing.th01"));
 
         assertFalse(predicate.apply(l, w, without));
-    }
-
-    private final static byte[] resource(final String filename) throws Exception {
-        return toByteArray(PostprocessingPredicateTest.class.getClassLoader().getResourceAsStream(filename));
     }
 }

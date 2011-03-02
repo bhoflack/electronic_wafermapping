@@ -4,7 +4,7 @@ import com.melexis.th01.TH01WaferMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.apache.commons.io.IOUtils.toByteArray;
+import static com.melexis.util.IOUtils.resource;
 import static org.junit.Assert.assertEquals;
 
 public class PassdiePredicateTest {
@@ -30,9 +30,5 @@ public class PassdiePredicateTest {
         final TH01WaferMap wmap = new TH01WaferMap(resource(location));
 
         assertEquals(expected, predicate.apply(l, w, wmap));
-    }
-
-    private final static byte[] resource(final String filename) throws Exception {
-        return toByteArray(PassdiePredicateTest.class.getClassLoader().getResourceAsStream(filename));
     }
 }
