@@ -14,8 +14,9 @@ public class RowColumnPredicateTest {
 
     private Lot l;
     private Wafer w;
+    private TH01WaferMap th01;
 
-    @Before public void setUp() {
+    @Before public void setUp() throws Exception {
         predicate = new RowColumnPredicate();
 
         l = new Lot();
@@ -23,12 +24,21 @@ public class RowColumnPredicateTest {
         l.addWafer(w);
         l.getConfig().put("ROWS", "32");
         l.getConfig().put("COLS", "28");
+
+        th01 = new TH01WaferMap(resource("sample.th01"));
     }
 
-    @Test public void pass() throws Exception {
-        final TH01WaferMap withTh01 = new TH01WaferMap(resource("sample.th01"));
-        assertTrue(predicate.apply(l, w, withTh01));
+    @Test public void pass() {
+        assertTrue(predicate.apply(l, w, th01));
     }
 
+    @Test public void failRows() {
+        l.getConfig().put("ROWS", "31");
+        assertFalse(predicate.apply(l, w, th01));
+    }
 
+    @Test public void failCols() {
+        l.getConfig().put("COLS", "29");
+        assertFalse(predicate.apply(l, w, th01));
+    }
 }
