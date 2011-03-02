@@ -27,6 +27,7 @@
     <module>wmdb-interface</module>
     <module>passdie-validation</module>
     <module>postprocessing-validation</module>
+    <module>rowcolumn-validation</module>
 
     <!-- electronic wafermapping should always be the last -->
     <module>electronic_wafermapping</module>
