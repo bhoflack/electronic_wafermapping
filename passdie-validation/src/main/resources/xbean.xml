@@ -20,5 +20,10 @@
 
   <bean id="xmltool" class="com.melexis.util.XmlUtil" />
 
-  <bean id="passdie" class="com.melexis.PassdieValidationTransformer" />
+    <bean id="predicate" class="com.melexis.PassdiePredicate" />
+
+  <bean id="passdie" class="com.melexis.util.LotValidation" >
+      <constructor-arg ref="predicate"/>
+      <constructor-arg value="Wafer with name '%s' has an invalid number of dies."/>
+  </bean>
 </beans>

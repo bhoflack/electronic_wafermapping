@@ -26,6 +26,7 @@
     <module>th01convertRoute</module>
     <module>wmdb-interface</module>
     <module>passdie-validation</module>
+    <module>postprocessing-validation</module>
 
     <!-- electronic wafermapping should always be the last -->
     <module>electronic_wafermapping</module>
