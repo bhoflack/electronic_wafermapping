@@ -10,6 +10,9 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import java.util.Collections;
+import java.util.Set;
+
 import static java.lang.String.format;
 
 public class XmlUtil {
@@ -33,10 +36,18 @@ public class XmlUtil {
         appendIfNotNull(sb, " subcontractor=\"%s\"", lot.getSubcontractor());
         sb.append(">\n");
 
+        if (!lot.getConfig().equals(Collections.emptyMap())) {
+            sb.append("  <configuration-parameters>\n");
+            for (final String k : lot.getConfig().keySet()) {
+                sb.append(format("    <parameter key=\"%s\" value=\"%s\" />\n", k, lot.getConfig().get(k)));
+            }
+            sb.append("  </configuration-parameters>\n");
+        }
+
         for (final Wafer wafer : lot.getWafers()) {
             sb.append(toXml(wafer));
         }
-        
+
         sb.append("</lot>");
         return sb.toString();
     }
@@ -47,6 +58,15 @@ public class XmlUtil {
         appendIfNotNull(sb, " number=\"%s\"", wafer.getWafernumber());
         appendIfNotNull(sb, " passdies=\"%s\"", wafer.getPassdies());
         sb.append(">\n");
+
+        if (wafer.getValidationmessages().size() > 0) {
+            sb.append("    <validation-messages>\n");
+            for (final String m : wafer.getValidationmessages()) {
+                sb.append(format("      <message value=\"%s\" />\n", m));
+            }
+            sb.append("    </validation-messages>\n");
+        }
+
         for (final String filename : wafer.getWafermaps().keySet()) {
             sb.append(toXml(filename));
         }
@@ -59,7 +79,7 @@ public class XmlUtil {
             sb.append(format(pattern, value));
         }
     }
-    
+
     private final String toXml(final String filename) {
         return format("    <wafermap name=\"%s\" />\n", filename);
     }

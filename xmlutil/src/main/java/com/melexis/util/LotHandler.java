@@ -11,10 +11,16 @@ public class LotHandler extends DefaultHandler {
     private final static String LOT = "lot";
     private final static String WAFER = "wafer";
     private final static String WAFERMAP = "wafermap";
+    private final static String CONFIG = "configuration-parameters";
+    private final static String VALIDATION = "validation-messages";
+    private final static String PARAMETER = "parameter";
+    private final static String MESSAGE = "message";
 
     private boolean inLot;
     private boolean inWafer;
     private boolean inWafermap;
+    private boolean inConfig;
+    private boolean inValidation;
 
     private Lot lot;
     private Wafer wafer;
@@ -45,6 +51,19 @@ public class LotHandler extends DefaultHandler {
 
             filename = attributes.getValue("name");
             wafer.getWafermaps().put(filename, null);
+        } else if (CONFIG.equals(element)) {
+            inConfig = true;
+        } else if (VALIDATION.equals(element)) {
+            inValidation = true;
+        } else if (inConfig && PARAMETER.equals(element)) {
+            final String key = attributes.getValue("key");
+            final String value = attributes.getValue("value");
+
+            lot.getConfig().put(key, value);
+        } else if (inValidation && MESSAGE.equals(element)) {
+            final String m = attributes.getValue("value");
+
+            wafer.getValidationmessages().add(m);
         }
 
     }

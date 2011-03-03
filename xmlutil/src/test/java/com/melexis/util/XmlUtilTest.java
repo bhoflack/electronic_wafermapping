@@ -1,5 +1,8 @@
 package com.melexis.util;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableMap;
+
 import com.melexis.Lot;
 import com.melexis.Wafer;
 import org.junit.Before;
@@ -9,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,11 +28,21 @@ public class XmlUtilTest {
         final Lot expected = createLot();
 
         final String xml = "<lot name=\"A12345\" item=\"201210600\" organization=\"MLX_IEP_OPS_IO\" probelocation=\"MLX_IEP_OPS_IO\" subcontractor=\"O_AMKOR_1\">\n" +
+            "  <configuration-parameters>\n" +
+            "    <parameter key=\"ROWS\" value=\"33\" />\n" +
+            "    <parameter key=\"COLS\" value=\"29\" />\n" +
+            "  </configuration-parameters>\n" +
             "  <wafer number=\"1\">\n" +
+            "    <validation-messages>\n" +
+            "      <message value=\"I'm a validation message\" />\n" +
+            "      <message value=\"I'm also a validation message.\" />\n" +
+            "    </validation-messages>\n" +
             "    <wafermap name=\"abc123\" />\n" +
             "    <wafermap name=\"abc456\" />\n" +
-            "  </wafer>\n" +  
-            "  <wafer number=\"2\"/>\n" +
+            "  </wafer>\n" +
+            "  <wafer number=\"2\">\n" +
+            "    <validation-messages />\n" +
+            "  </wafer>\n" +
             "  <wafer number=\"3\"/>\n" +
             "  <wafer number=\"4\"/>\n" +
             "</lot>";
@@ -48,6 +62,7 @@ public class XmlUtilTest {
 
     private Lot createLot() {
         final Lot expected = new Lot();
+        expected.setConfig(ImmutableMap.of("ROWS", "33", "COLS", "29"));
 
         final Set<Wafer> wafers = new HashSet<Wafer>();
         final Wafer wafer = new Wafer(1);
@@ -56,6 +71,7 @@ public class XmlUtilTest {
         wafermaps.put("abc456", null);
 
         wafer.setWafermaps(wafermaps);
+        wafer.setValidationmessages(ImmutableSet.of("I'm a validation message", "I'm also a validation message."));
 
         wafers.add(wafer);
         wafers.add(new Wafer(2));

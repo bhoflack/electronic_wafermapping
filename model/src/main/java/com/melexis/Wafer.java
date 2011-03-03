@@ -63,6 +63,7 @@ public class Wafer {
         sb.append("{wafernumber=").append(wafernumber);
         sb.append(", passdies=").append(passdies);
         sb.append(", wafermaps=").append(wafermaps);
+        sb.append(", validationmessages=").append(validationmessages);
         sb.append('}');
         return sb.toString();
     }

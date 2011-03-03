@@ -140,6 +140,16 @@ Not a blocker
        SCHEDULED: <2011-03-01 Tue>
 ***** planning
 
+**** Inkless 02/03
+***** fpl, mcl, ggo, jut, brh
+***** parter 1.3
+****** shopfloor and partner split from each other                     :CRAB:
+****** testplan to automate the acceptance testing
+****** GO
+***** inkless 1.30
+****** GO no go on friday
+***** planning roadmap
+***** open tickets and issues
 *** Auto fill in collection plans
 *** Sent mail to ati                                         :mail:follow:up:
 *** DONE Create planning for project                                    :ati:
